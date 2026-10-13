@@ -1,0 +1,9 @@
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Penguin', 5, 2, true, false);
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Lion', 3, 4, false, false);
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Eagle', 1, 2, true, true);
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Condor', 1, 2, true, true);
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Elk', 7, 4, false, false);
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Bat', 10, 4, true, true);
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Tiger', 2, 4, false, false);
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Panda', 2, 4, false, false);
+INSERT INTO animals (NAME, QUANTITY, NUM_LEGS, HAS_WINGS, CAN_FLY) VALUES ('Hippopotamus', 2, 4, false, false);
