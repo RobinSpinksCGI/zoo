@@ -2,11 +2,7 @@ package com.codecademy.zoo.controllers;
 
 import com.codecademy.zoo.entities.Animal;
 import com.codecademy.zoo.repositories.AnimalRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -38,5 +34,20 @@ public class AnimalController {
     public Animal createNewAnimal(@RequestBody Animal animal) {
         Animal newAnimal = this.animalRepository.save(animal);
         return newAnimal;
+    }
+
+    @PutMapping("/animals/{id}")
+    public Animal updateAnimal(@PathVariable("id") Integer id, @RequestBody Animal animal) {
+        Optional<Animal> animalToUpdateOptional = this.animalRepository.findById(id);
+        if (animalToUpdateOptional.isEmpty()) return null;
+
+        Animal animalToUpdate = animalToUpdateOptional.get();
+
+        if (animal.getName() != null) animalToUpdate.setName(animal.getName());
+        if (animal.getCanFly() != null) animalToUpdate.setCanFly(animal.getCanFly());
+        if (animal.getHasWings() != null) animalToUpdate.setHasWings(animal.getHasWings());
+        if (animal.getNumLegs() != null) animalToUpdate.setNumLegs(animal.getNumLegs());
+
+        return this.animalRepository.save(animalToUpdate);
     }
 }
