@@ -49,8 +49,9 @@ public class AnimalController {
             }
 
             if (flying != null) {
-                return flying? this.animalRepository.findByNameAndCanFlyTrue(name) : this.animalRepository.findByNameAndCanFlyFalse(name);
+                return flying ? this.animalRepository.findByNameAndCanFlyTrue(name) : this.animalRepository.findByNameAndCanFlyFalse(name);
             }
+        }
 
         if (minLegs != null) {
             return this.animalRepository.findByNumLegsGreaterThanEqual(minLegs);
