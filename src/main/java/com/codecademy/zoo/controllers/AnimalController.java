@@ -34,11 +34,7 @@ public class AnimalController {
             @RequestParam(name="flying", required = false) Boolean flying
     ) {
         if (name != null) {
-            return this.animalRepository.findByName(name);
-
             if (minLegs != null) {
-                return this.animalRepository.findByNameAndNumLegsGreaterThanEqual(name, minLegs);
-
                 if (flying != null) {
                     if (flying) {
                         return this.animalRepository.findByNameAndNumLegsGreaterThanEqualAndCanFlyTrue(name, minLegs);
@@ -46,16 +42,18 @@ public class AnimalController {
                         return this.animalRepository.findByNameAndNumLegsGreaterThanEqualAndCanFlyFalse(name, minLegs);
                     }
                 }
+
+                return this.animalRepository.findByNameAndNumLegsGreaterThanEqual(name, minLegs);
             }
 
             if (flying != null) {
                 return flying ? this.animalRepository.findByNameAndCanFlyTrue(name) : this.animalRepository.findByNameAndCanFlyFalse(name);
             }
+
+            return this.animalRepository.findByName(name);
         }
 
         if (minLegs != null) {
-            return this.animalRepository.findByNumLegsGreaterThanEqual(minLegs);
-
             if (flying != null) {
                 if (flying) {
                     return this.animalRepository.findByNumLegsGreaterThanEqualAndCanFlyTrue(minLegs);
@@ -63,6 +61,8 @@ public class AnimalController {
                     return this.animalRepository.findByNumLegsGreaterThanEqualAndCanFlyFalse(minLegs);
                 }
             }
+
+            return this.animalRepository.findByNumLegsGreaterThanEqual(minLegs);
         }
 
         if (flying != null) {
