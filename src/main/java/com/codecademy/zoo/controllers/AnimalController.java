@@ -44,4 +44,14 @@ public class AnimalController {
 
         return this.animalRepository.save(animalToUpdate);
     }
+
+    @DeleteMapping("animals/id")
+    public Animal deleteAnimal(@PathVariable("id") Integer id) {
+        Optional<Animal> animalToDeleteOptional = this.animalRepository.findById(id);
+        if (animalToDeleteOptional.isEmpty()) return null;
+
+        Animal animalToDelete = animalToDeleteOptional.get();
+        this.animalRepository.delete(animalToDelete);
+        return animalToDelete;
+    }
 }
