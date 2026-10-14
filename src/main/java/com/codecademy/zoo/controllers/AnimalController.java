@@ -4,7 +4,10 @@ import com.codecademy.zoo.entities.Animal;
 import com.codecademy.zoo.repositories.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 public class AnimalController {
@@ -17,5 +20,16 @@ public class AnimalController {
     @GetMapping("/animals")
     public Iterable<Animal> getAllAnimals() {
         return this.animalRepository.findAll();
+    }
+
+    @GetMapping("/animals/{id}")
+    public Animal getAnimalById(@PathVariable("id") Integer id) {
+        Optional<Animal> animalOptional = this.animalRepository.findById(id);
+
+        if (!animalOptional.isPresent()) {
+            return null;
+        }
+
+        return animalOptional.get();
     }
 }
