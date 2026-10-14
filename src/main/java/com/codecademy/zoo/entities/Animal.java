@@ -1,14 +1,10 @@
 package com.codecademy.zoo.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "ANIMALS")
+@NamedQuery(name = "findByFullSearch", query = "SELECT a FROM Animal a WHERE name = ?1 AND numLegs >= ?2 AND canFly = ?3")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

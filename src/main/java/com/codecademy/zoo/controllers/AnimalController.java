@@ -36,11 +36,12 @@ public class AnimalController {
         if (name != null) {
             if (minLegs != null) {
                 if (flying != null) {
-                    if (flying) {
-                        return this.animalRepository.findByNameAndNumLegsGreaterThanEqualAndCanFlyTrue(name, minLegs);
-                    } else {
-                        return this.animalRepository.findByNameAndNumLegsGreaterThanEqualAndCanFlyFalse(name, minLegs);
-                    }
+//                    if (flying) {
+//                        return this.animalRepository.findByNameAndNumLegsGreaterThanEqualAndCanFlyTrue(name, minLegs);
+//                    } else {
+//                        return this.animalRepository.findByNameAndNumLegsGreaterThanEqualAndCanFlyFalse(name, minLegs);
+//                    }
+                    return this.animalRepository.findByFullSearch(name, minLegs, flying);
                 }
 
                 return this.animalRepository.findByNameAndNumLegsGreaterThanEqual(name, minLegs);

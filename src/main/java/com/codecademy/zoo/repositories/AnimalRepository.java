@@ -15,6 +15,7 @@ public interface AnimalRepository extends CrudRepository<Animal, Integer> {
     List<Animal> findByNameAndCanFlyFalse(String name);
     List<Animal> findByNumLegsGreaterThanEqualAndCanFlyTrue(Integer minLegs);
     List<Animal> findByNumLegsGreaterThanEqualAndCanFlyFalse(Integer minLegs);
-    List<Animal> findByNameAndNumLegsGreaterThanEqualAndCanFlyTrue(String name, Integer minLegs);
-    List<Animal> findByNameAndNumLegsGreaterThanEqualAndCanFlyFalse(String name, Integer minLegs);
+//    List<Animal> findByNameAndNumLegsGreaterThanEqualAndCanFlyTrue(String name, Integer minLegs);
+//    List<Animal> findByNameAndNumLegsGreaterThanEqualAndCanFlyFalse(String name, Integer minLegs);
+    List<Animal> findByFullSearch(String name, Integer minLegs, Boolean flying);
 }
