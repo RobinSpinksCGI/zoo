@@ -4,6 +4,8 @@ import com.codecademy.zoo.entities.Animal;
 import com.codecademy.zoo.repositories.AnimalRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,6 +25,50 @@ public class AnimalController {
     public Animal getAnimalById(@PathVariable("id") Integer id) {
         Optional<Animal> animalOptional = this.animalRepository.findById(id);
         return animalOptional.orElse(null);
+    }
+
+    @GetMapping("/animals/search")
+    public List<Animal> searchAnimals(
+            @RequestParam(name="name", required = false) String name,
+            @RequestParam(name="minLegs", required = false) Integer minLegs,
+            @RequestParam(name="flying", required = false) Boolean flying
+    ) {
+        if (name != null) {
+            return this.animalRepository.findByName(name);
+
+            if (minLegs != null) {
+                return this.animalRepository.findByNameAndNumLegsGreaterThanEqual(name, minLegs);
+
+                if (flying != null) {
+                    if (flying) {
+                        return this.animalRepository.findByNameAndNumLegsGreaterThanEqualAndCanFlyTrue(name, minLegs);
+                    } else {
+                        return this.animalRepository.findByNameAndNumLegsGreaterThanEqualAndCanFlyFalse(name, minLegs);
+                    }
+                }
+            }
+
+            if (flying != null) {
+                return flying? this.animalRepository.findByNameAndCanFlyTrue(name) : this.animalRepository.findByNameAndCanFlyFalse(name);
+            }
+
+        if (minLegs != null) {
+            return this.animalRepository.findByNumLegsGreaterThanEqual(minLegs);
+
+            if (flying != null) {
+                if (flying) {
+                    return this.animalRepository.findByNumLegsGreaterThanEqualAndCanFlyTrue(minLegs);
+                } else {
+                    return this.animalRepository.findByNumLegsGreaterThanEqualAndCanFlyFalse(minLegs);
+                }
+            }
+        }
+
+        if (flying != null) {
+            return flying ? this.animalRepository.findByCanFlyTrue() : this.animalRepository.findByCanFlyFalse();
+        }
+
+        return new ArrayList<>();
     }
 
     @PostMapping("/animals")
