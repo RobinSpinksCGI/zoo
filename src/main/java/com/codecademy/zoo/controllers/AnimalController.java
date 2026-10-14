@@ -22,18 +22,12 @@ public class AnimalController {
     @GetMapping("/animals/{id}")
     public Animal getAnimalById(@PathVariable("id") Integer id) {
         Optional<Animal> animalOptional = this.animalRepository.findById(id);
-
-        if (!animalOptional.isPresent()) {
-            return null;
-        }
-
-        return animalOptional.get();
+        return animalOptional.orElse(null);
     }
 
     @PostMapping("/animals")
     public Animal createNewAnimal(@RequestBody Animal animal) {
-        Animal newAnimal = this.animalRepository.save(animal);
-        return newAnimal;
+        return this.animalRepository.save(animal);
     }
 
     @PutMapping("/animals/{id}")
